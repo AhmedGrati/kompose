@@ -72,8 +72,8 @@ type ConvertOptions struct {
 	IsReplicaSetFlag            bool
 	IsDeploymentConfigFlag      bool
 	IsNamespaceFlag             bool
-
-	Server string
+	Containers                  []string
+	Server                      string
 
 	YAMLIndent int
 

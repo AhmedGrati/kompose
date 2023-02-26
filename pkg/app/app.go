@@ -30,6 +30,7 @@ import (
 	"github.com/kubernetes/kompose/pkg/transformer"
 	"github.com/kubernetes/kompose/pkg/transformer/kubernetes"
 	"github.com/kubernetes/kompose/pkg/transformer/openshift"
+	"github.com/kubernetes/kompose/pkg/utils/docker"
 )
 
 var (
@@ -204,6 +205,15 @@ func validateControllers(opt *kobject.ConvertOptions) {
 // Convert transforms docker compose or dab file to k8s objects
 func Convert(opt kobject.ConvertOptions) {
 	validateControllers(&opt)
+
+	// Connect to the Docker client
+	_, err := docker.Client()
+	if err != nil {
+		return
+	}
+	// Inspect Given containers: output should be a string
+
+	// Transform inspected containers into docker-compose file
 
 	// loader parses input from file into komposeObject.
 	l, err := loader.GetLoader(inputFormat)

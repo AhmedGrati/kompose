@@ -50,8 +50,8 @@ var (
 	ConvertPushImageRegistry     string
 	ConvertOpt                   kobject.ConvertOptions
 	ConvertYAMLIndent            int
-
-	UpBuild string
+	ConvertContainers            []string
+	UpBuild                      string
 
 	// WithKomposeAnnotation decides if we will add metadata about this convert to resource's annotation.
 	// default is true.
@@ -116,6 +116,7 @@ var convertCmd = &cobra.Command{
 			ServiceGroupMode:            ServiceGroupMode,
 			ServiceGroupName:            ServiceGroupName,
 			SecretsAsFiles:              SecretsAsFiles,
+			Containers:                  ConvertContainers,
 		}
 
 		if ServiceGroupMode == "" && MultipleContainerMode {
@@ -153,6 +154,7 @@ func init() {
 	convertCmd.Flags().StringVar(&ServiceGroupName, "service-group-name", "", "Using with --service-group-mode=volume to specific a final service name for the group")
 	convertCmd.Flags().MarkDeprecated("multiple-container-mode", "use --service-group-mode=label")
 	convertCmd.Flags().BoolVar(&SecretsAsFiles, "secrets-as-files", false, "Always convert docker-compose secrets into files instead of symlinked directories.")
+	convertCmd.Flags().StringSliceVar(&ConvertContainers, "container", []string{}, "Convert direcly a running container")
 
 	// OpenShift only
 	convertCmd.Flags().BoolVar(&ConvertDeploymentConfig, "deployment-config", true, "Generate an OpenShift deploymentconfig object")
