@@ -79,3 +79,5 @@ tags
 
 # Client Test generated files
 client/testdata/generated
+
+website/node_modules
