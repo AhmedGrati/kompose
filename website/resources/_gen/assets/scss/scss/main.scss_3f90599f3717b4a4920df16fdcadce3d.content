@@ -16247,7 +16247,7 @@ readers do not read off random characters that represent icons */
     z-index: 1; }
 
 @media (min-width: 992px) {
-  .td-max-width-on-larger-screens, .td-card.card, .td-content .td-card.highlight, .td-card-group.card-group, .td-content .footnotes,
+  .td-max-width-on-larger-screens, .td-card.card, .td-content .td-card.highlight, .td-card-group.card-group, .td-content > .tab-content .tab-pane, .td-content .footnotes,
   .td-content > .alert,
   .td-content > .highlight,
   .td-content > .lead,
@@ -17661,6 +17661,7 @@ readers do not read off random characters that represent icons */
     color: #e7f0ff; }
 
 .td-blog .td-rss-button {
+  border-radius: 2rem;
   float: right;
   display: none; }
 
@@ -17884,8 +17885,14 @@ nav.foldable-nav .with-child ul {
   @media (min-width: 768px) {
     @supports (position: sticky) {
       .td-sidebar-nav {
-        max-height: calc(100vh - 10rem);
+        max-height: calc(100vh - 8.5rem);
         overflow-y: auto; } } }
+  @media (min-width: 992px) {
+    .td-sidebar-nav.td-sidebar-nav--search-disabled {
+      padding-top: 1rem; }
+      @supports (position: sticky) {
+        .td-sidebar-nav.td-sidebar-nav--search-disabled {
+          max-height: calc(calc(100vh - 8.5rem) + 4.5rem); } } }
   @media (min-width: 768px) {
     .td-sidebar-nav {
       display: block !important; } }
@@ -17893,7 +17900,7 @@ nav.foldable-nav .with-child ul {
     padding-left: 0; }
     .td-sidebar-nav__section li {
       list-style: none; }
-    .td-sidebar-nav__section ul {
+    .td-sidebar-nav__section.ul-0, .td-sidebar-nav__section ul {
       padding: 0;
       margin: 0; }
     @media (min-width: 768px) {
@@ -17948,9 +17955,7 @@ nav.foldable-nav .with-child ul {
     color: #212529;
     margin: 1rem; }
   .td-sidebar__search {
-    padding: 1rem 15px;
-    margin-right: -15px;
-    margin-left: -15px; }
+    padding: 1rem 0; }
   .td-sidebar__inner {
     order: 0; }
     @media (min-width: 768px) {
@@ -17959,7 +17964,7 @@ nav.foldable-nav .with-child ul {
           position: sticky;
           top: 4rem;
           z-index: 10;
-          height: calc(100vh - 6rem); } } }
+          height: calc(100vh - 5rem); } } }
     @media (min-width: 1200px) {
       .td-sidebar__inner {
         flex: 0 1 320px; } }
@@ -18011,13 +18016,6 @@ nav.foldable-nav .with-child ul {
 
 .td-toc ul {
   padding-left: 0; }
-
-.btn, div.drawio button, .td-blog .td-rss-button {
-  border-radius: 1rem; }
-  .btn-lg, .btn-group-lg > .btn, div.drawio .btn-group-lg > button, .td-blog .td-rss-button {
-    border-radius: 2rem; }
-  .btn-sm, .btn-group-sm > .btn, div.drawio .btn-group-sm > button, .td-blog .btn-group-sm > .td-rss-button {
-    border-radius: 1rem; }
 
 @media print {
   .td-breadcrumbs {
@@ -18145,8 +18143,7 @@ nav.foldable-nav .with-child ul {
       color: rgba(255, 255, 255, 0.75); }
   .td-search__input {
     width: 100%;
-    text-indent: 1.25em;
-    border-radius: 1rem; }
+    text-indent: 1.25em; }
     .td-search__input:not(:focus) {
       background: transparent; }
     .td-search__input.form-control:focus {
@@ -18170,6 +18167,13 @@ nav.foldable-nav .with-child ul {
     text-indent: 0px; }
   .td-search:not(:focus-within) {
     color: #6c757d; }
+
+.td-sidebar .td-search--algolia {
+  display: block;
+  padding: 0 0.5rem; }
+  .td-sidebar .td-search--algolia > button {
+    margin: 0;
+    width: 100%; }
 
 .td-search--offline:focus-within .td-search__icon {
   display: flex;
@@ -18578,18 +18582,14 @@ div.drawioframe {
     left: 5%;
     z-index: 1010; }
 
-.tab-content .tab-pane pre {
-  margin: 0rem 0 0rem 0; }
-
 .tab-content .tab-pane {
   margin-top: 0rem;
   margin-bottom: 1.5rem;
-  max-width: 80%;
   border-left: 1px solid rgba(0, 0, 0, 0.125);
   border-right: 1px solid rgba(0, 0, 0, 0.125);
   border-bottom: 1px solid rgba(0, 0, 0, 0.125); }
   .tab-content .tab-pane .highlight {
-    margin: 0rem 0 0rem 0;
+    margin: 0;
     border: none;
     max-width: 100%; }
 
@@ -18599,6 +18599,11 @@ div.drawioframe {
   color: inherit;
   border-radius: 0;
   padding: 1.5rem; }
+  .tab-body > :last-child {
+    margin-bottom: 0; }
+  .tab-body > .highlight:only-child {
+    margin: -1.5rem;
+    max-width: calc(100% + 3rem); }
   .tab-body-primary {
     border-style: solid;
     border-color: #30638e; }
@@ -18635,6 +18640,9 @@ div.drawioframe {
 .td-card .card-body pre {
   margin: 0;
   padding: 0 1rem 1rem 1rem; }
+
+.swagger-ui .info .title small pre, .swagger-ui .info .title .small pre, .swagger-ui .info .title .td-footer__copyright-etc pre, .swagger-ui .info .title .td-cover-block > .byline pre {
+  background: #7d8492; }
 
 .td-footer {
   min-height: 150px;
